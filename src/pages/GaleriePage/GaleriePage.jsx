@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap'
 import paintingsService from '../../services/paintings.services'
-import PaintingCard from '../../components/PaintingCard/PaintingCard'
+import PaintingsList from '../../components/PaintingsList/PaintingsList'
 
 const GaleriePage = () => {
 
@@ -20,16 +20,7 @@ const GaleriePage = () => {
             <h1>Galería de cuadros</h1>
             <hr />
             <Row>
-                {
-                    paintings.map(elm => {
-                        return (
-                            <Col md={{ span: 4 }} key={elm._id}>
-                                <PaintingCard {...elm} />
-                            </Col>
-                        )
-
-                    })
-                }
+                <PaintingsList paintings={paintings} />
             </Row>
         </Container>
     )
