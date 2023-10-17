@@ -1,3 +1,10 @@
-.App {
+.App,
+html {
   font-family: sans-serif;
+  background-color: #EEEEEE
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
