@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 const Navigation = () => {
   return (
-    <Navbar style={{ backgroundColor: '#176B87' }} data-bs-theme="dark">
+    <Navbar style={{ backgroundColor: '#176B87' }} data-bs-theme="dark" className='mb-5'>
 
       <Container>
         <Navbar.Brand as='span'>
