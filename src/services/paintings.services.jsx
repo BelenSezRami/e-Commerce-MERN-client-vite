@@ -4,9 +4,8 @@ import axios from 'axios'
 class PaintingService {
 
     constructor() {
-
         this.api = axios.create({
-            baseURL: `${process.env.REACT_APP_API_URL}/paintings`
+            baseURL: `${import.meta.env.VITE_REACT_APP_API_URL}/paintings`,
         })
     }
 

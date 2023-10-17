@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Container } from 'react-bootstrap'
+import { Col, Container, Row } from 'react-bootstrap'
 import paintingsService from '../../services/paintings.services'
+import PaintingCard from '../../components/PaintingCard/PaintingCard'
 
 const GaleriePage = () => {
 
@@ -9,7 +10,7 @@ const GaleriePage = () => {
     useEffect(() => {
         paintingsService
             .getAllPaintings()
-            .then(({ data }) => console.log(data))
+            .then(({ data }) => setPaintings(data))
             .catch(err => console.log(err))
 
     }, [])
@@ -18,6 +19,18 @@ const GaleriePage = () => {
         <Container>
             <h1>Galería de cuadros</h1>
             <hr />
+            <Row>
+                {
+                    paintings.map(elm => {
+                        return (
+                            <Col md={{ span: 4 }} key={elm._id}>
+                                <PaintingCard {...elm} />
+                            </Col>
+                        )
+
+                    })
+                }
+            </Row>
         </Container>
     )
 }
