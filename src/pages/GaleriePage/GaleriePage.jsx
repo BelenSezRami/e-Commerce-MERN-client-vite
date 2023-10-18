@@ -5,7 +5,7 @@ import PaintingsList from '../../components/PaintingsList/PaintingsList'
 
 const GaleriePage = () => {
 
-    const [paintings, setPaintings] = useState([])
+    const [paintings, setPaintings] = useState()
 
     useEffect(() => {
         paintingsService
@@ -19,8 +19,14 @@ const GaleriePage = () => {
         <Container>
             <h1>Galería de cuadros</h1>
             <hr />
-            <Row>
-                <PaintingsList paintings={paintings} />
+            <Row className='justify-content-center'>
+                {
+                    !paintings
+                        ?
+                        <p>Cargando...</p>
+                        :
+                        <PaintingsList paintings={paintings} />
+                }
             </Row>
         </Container>
     )
