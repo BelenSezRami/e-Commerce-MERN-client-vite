@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Col, Form, InputGroup, Row } from 'react-bootstrap'
 
-import './NewPaintingForm.css'
 import paintingsService from '../../services/paintings.services'
 
 const NewPaintingForm = () => {
@@ -9,7 +8,7 @@ const NewPaintingForm = () => {
     const [paintingData, setPaintingData] = useState({
         title: '',
         description: '',
-        image: '',
+        // image: '',
         height: '',
         width: '',
         techniques: [],
@@ -64,25 +63,29 @@ const NewPaintingForm = () => {
 
         <Form onSubmit={handleSubmit}>
 
-            <Form.Group className="mb-3" controlId="title">
+            <Form.Group className="mb-3" >
                 <Form.Label>Título de la obra</Form.Label>
                 <Form.Control type="text" value={paintingData.title} onChange={handleInputChange} name='title' />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="description">
+            <Form.Group className="mb-3" >
                 <Form.Label>Descripción</Form.Label>
                 <Form.Control as="textarea" value={paintingData.description} onChange={handleInputChange} name='description' />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="image">
+            {/* <Form.Group className="mb-3" >
                 <Form.Label>Imagen</Form.Label>
                 <Form.Control type="file" value={paintingData.image} onChange={handleInputChange} name='image' />
+            </Form.Group> */}
+            <Form.Group className="mb-3" >
+                <Form.Label>Imagen</Form.Label>
+                <Form.Control type="text" value={paintingData.image} onChange={handleInputChange} name='image' />
             </Form.Group>
 
             <Row>
                 <Form.Label>Dimensiones</Form.Label>
                 <Col>
-                    <InputGroup className="mb-3" controlId="height">
+                    <InputGroup className="mb-3" >
                         <InputGroup.Text>Altura</InputGroup.Text>
                         <Form.Control type="number" value={paintingData.height} onChange={handleInputChange} name='height' />
                         <InputGroup.Text>cm</InputGroup.Text>
@@ -91,7 +94,7 @@ const NewPaintingForm = () => {
                 </Col>
 
                 <Col>
-                    <InputGroup className="mb-3" controlId="width">
+                    <InputGroup className="mb-3" >
                         <InputGroup.Text>Ancho</InputGroup.Text>
                         <Form.Control type="number" value={paintingData.width} onChange={handleInputChange} name='width' />
                         <InputGroup.Text>cm</InputGroup.Text>
@@ -99,7 +102,7 @@ const NewPaintingForm = () => {
                 </Col>
             </Row>
 
-            <Form.Group className="mb-3" controlId="techniques">
+            <Form.Group className="mb-3" >
                 <Form.Label>Técnica/s</Form.Label>
                 <Row>
                     {
@@ -132,7 +135,7 @@ const NewPaintingForm = () => {
 
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="year">
+            <Form.Group className="mb-3" >
                 <Form.Label>Año de creación</Form.Label>
                 <Form.Select value={paintingData.year} onChange={handleInputChange} name='year'>
                     <option>Elige un año</option>
@@ -143,14 +146,14 @@ const NewPaintingForm = () => {
             <Row className='align-items-center'>
                 <Col xs={9}>
                     <Form.Label >Precio</Form.Label>
-                    <InputGroup className="mb-3" controlId="price">
+                    <InputGroup className="mb-3" >
                         <Form.Control type="number" value={paintingData.price} onChange={handleInputChange} name='price' />
                         <InputGroup.Text>€</InputGroup.Text>
                     </InputGroup>
                 </Col>
 
                 <Col>
-                    <Form.Group className="mt-3" controlId="sold">
+                    <Form.Group className="mt-3" >
                         <Form.Check
                             type="checkbox"
                             label="Vendido"
