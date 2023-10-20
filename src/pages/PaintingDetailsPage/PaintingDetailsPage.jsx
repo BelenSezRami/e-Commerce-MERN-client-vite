@@ -38,8 +38,11 @@ const PaintingDetailsPage = () => {
                             <Col md={{ span: 12 }} className='painting-info'>
                                 <h2>{painting.title.toUpperCase()}</h2>
                                 <p>{painting.description}</p>
-                                <p>Dimensiones: {painting.heigh} x {painting.width}cm</p>
-                                <p>{painting.technique}</p>
+                                <p>Dimensiones: {painting.height} x {painting.width}cm</p>
+                                <ul>Técnicas:</ul>
+                                {painting.techniques.map((technique, index) => (
+                                    <li key={index}>{technique}</li>
+                                ))}
                                 <p>{new Date(painting.year).getFullYear()}</p>
                                 <p>{painting.price}€</p>
                                 {

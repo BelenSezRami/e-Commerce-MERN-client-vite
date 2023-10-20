@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Button, Col, Form, InputGroup, Row } from 'react-bootstrap'
 
 import './NewPaintingForm.css'
+import paintingsService from '../../services/paintings.services'
 
 const NewPaintingForm = () => {
 
@@ -49,10 +50,19 @@ const NewPaintingForm = () => {
         setPaintingData({ ...paintingData, techniques: updatedTechniques })
     }
 
+    const handleSubmit = e => {
+        e.preventDefault()
+
+        paintingsService
+            .savePainting(paintingData)
+            .then(() => alert('Nuevo cuadro creado'))
+            .catch(err => console.log(err))
+    }
+
 
     return (
 
-        <Form>
+        <Form onSubmit={handleSubmit}>
 
             <Form.Group className="mb-3" controlId="title">
                 <Form.Label>Título de la obra</Form.Label>

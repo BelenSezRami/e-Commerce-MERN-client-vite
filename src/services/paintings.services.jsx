@@ -18,7 +18,7 @@ class PaintingService {
     }
 
     savePainting(paintingData) {
-        return this.api.get('/savePainting', paintingData)
+        return this.api.post('/savePainting', paintingData)
     }
 
 }
