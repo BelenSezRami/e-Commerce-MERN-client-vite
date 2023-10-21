@@ -4,7 +4,9 @@ import { Col } from 'react-bootstrap'
 
 
 const PaintingsList = ({ paintings }) => {
+
     return (
+
         paintings.map(elm => {
             return (
                 <Col md={{ span: 4 }} key={elm._id}>

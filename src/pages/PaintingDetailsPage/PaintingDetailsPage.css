@@ -4,25 +4,25 @@
 
 .index-button {
     background-color: #64CCC5;
-    font-size: 1.2em;
+    font-size: 1.1em;
     padding: 10px;
     margin-right: 10px;
-    border-radius: 3px;
+    border-radius: 7px;
 }
 
 .back-to-galerie-button {
     background-color: #176B87;
     color: white;
-    font-size: 1.2em;
+    font-size: 1.1em;
     margin-right: 10px;
     padding: 10px;
-    border-radius: 3px;
+    border-radius: 7px;
 }
 
 .add-to-cart-button {
     background-color: #053B50;
     color: white;
-    font-size: 1.2em;
+    font-size: 1.1em;
     padding: 10px;
-    border-radius: 3px;
+    border-radius: 7px;
 }

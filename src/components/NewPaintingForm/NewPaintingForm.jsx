@@ -46,6 +46,8 @@ const NewPaintingForm = () => {
             updatedTechniques.push(technique)
         }
 
+        updatedTechniques.sort()
+
         setPaintingData({ ...paintingData, techniques: updatedTechniques })
     }
 
@@ -58,10 +60,9 @@ const NewPaintingForm = () => {
             .catch(err => console.log(err))
     }
 
-
     return (
 
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} style={{ marginBottom: '50px' }}>
 
             <Form.Group className="mb-3" >
                 <Form.Label>Título de la obra</Form.Label>
@@ -118,6 +119,7 @@ const NewPaintingForm = () => {
                             'Arena',
                             'Yeso',
                             'Pigmento en polvo',
+                            'Barniz'
                         ]
                             .map((technique, index) => (
                                 <div className="col-4" key={index}>
@@ -166,7 +168,7 @@ const NewPaintingForm = () => {
             </Row>
 
             <Row className='mt-4'>
-                <Button className="mb-8" style={{ backgroundColor: '#053B50', borderColor: '#053B50' }} type="submit">
+                <Button style={{ backgroundColor: '#053B50', borderColor: '#053B50' }} type="submit">
                     Crear ficha del cuadro
                 </Button>
             </Row>
