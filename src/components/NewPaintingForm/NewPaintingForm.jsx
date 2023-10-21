@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Button, Col, Form, InputGroup, Row } from 'react-bootstrap'
 
 import paintingsService from '../../services/paintings.services'
+import ModalWindow from '../ModalWindow/ModalWindow'
 
 const NewPaintingForm = () => {
 
@@ -62,118 +63,125 @@ const NewPaintingForm = () => {
 
     return (
 
-        <Form onSubmit={handleSubmit} style={{ marginBottom: '50px' }}>
+        <>
 
-            <Form.Group className="mb-3" >
-                <Form.Label>Título de la obra</Form.Label>
-                <Form.Control type="text" value={paintingData.title} onChange={handleInputChange} name='title' />
-            </Form.Group>
+            <Form onSubmit={handleSubmit} style={{ marginBottom: '50px' }}>
 
-            <Form.Group className="mb-3" >
-                <Form.Label>Descripción</Form.Label>
-                <Form.Control as="textarea" value={paintingData.description} onChange={handleInputChange} name='description' />
-            </Form.Group>
+                <Form.Group className="mb-3" >
+                    <Form.Label>Título de la obra</Form.Label>
+                    <Form.Control type="text" value={paintingData.title} onChange={handleInputChange} name='title' />
+                </Form.Group>
 
-            {/* <Form.Group className="mb-3" >
+                <Form.Group className="mb-3" >
+                    <Form.Label>Descripción</Form.Label>
+                    <Form.Control as="textarea" value={paintingData.description} onChange={handleInputChange} name='description' />
+                </Form.Group>
+
+                {/* <Form.Group className="mb-3" >
                 <Form.Label>Imagen</Form.Label>
                 <Form.Control type="file" value={paintingData.image} onChange={handleInputChange} name='image' />
             </Form.Group> */}
-            <Form.Group className="mb-3" >
-                <Form.Label>Imagen</Form.Label>
-                <Form.Control type="text" value={paintingData.image} onChange={handleInputChange} name='image' />
-            </Form.Group>
+                <Form.Group className="mb-3" >
+                    <Form.Label>Imagen</Form.Label>
+                    <Form.Control type="text" value={paintingData.image} onChange={handleInputChange} name='image' />
+                </Form.Group>
 
-            <Row>
-                <Form.Label>Dimensiones</Form.Label>
-                <Col>
-                    <InputGroup className="mb-3" >
-                        <InputGroup.Text>Altura</InputGroup.Text>
-                        <Form.Control type="number" value={paintingData.height} onChange={handleInputChange} name='height' />
-                        <InputGroup.Text>cm</InputGroup.Text>
-                    </InputGroup>
-
-                </Col>
-
-                <Col>
-                    <InputGroup className="mb-3" >
-                        <InputGroup.Text>Ancho</InputGroup.Text>
-                        <Form.Control type="number" value={paintingData.width} onChange={handleInputChange} name='width' />
-                        <InputGroup.Text>cm</InputGroup.Text>
-                    </InputGroup>
-                </Col>
-            </Row>
-
-            <Form.Group className="mb-3" >
-                <Form.Label>Técnica/s</Form.Label>
                 <Row>
-                    {
-                        [
-                            'Óleo sobre lienzo',
-                            'Espátula',
-                            'Carboncillo',
-                            'Acuarela',
-                            'Témpera',
-                            'Tinta',
-                            'Pan de oro',
-                            'Serrín',
-                            'Arena',
-                            'Yeso',
-                            'Pigmento en polvo',
-                            'Barniz'
-                        ]
-                            .map((technique, index) => (
-                                <div className="col-4" key={index}>
-                                    <Form.Check
-                                        type="checkbox"
-                                        id={`technique-${index}`}
-                                        label={technique}
-                                        checked={paintingData.techniques.includes(technique)}
-                                        onChange={() => handleTechniqueChange(technique)}
-                                    />
-                                </div>
-                            ))
-                    }
+                    <Form.Label>Dimensiones</Form.Label>
+                    <Col>
+                        <InputGroup className="mb-3" >
+                            <InputGroup.Text>Altura</InputGroup.Text>
+                            <Form.Control type="number" value={paintingData.height} onChange={handleInputChange} name='height' />
+                            <InputGroup.Text>cm</InputGroup.Text>
+                        </InputGroup>
+
+                    </Col>
+
+                    <Col>
+                        <InputGroup className="mb-3" >
+                            <InputGroup.Text>Ancho</InputGroup.Text>
+                            <Form.Control type="number" value={paintingData.width} onChange={handleInputChange} name='width' />
+                            <InputGroup.Text>cm</InputGroup.Text>
+                        </InputGroup>
+                    </Col>
                 </Row>
 
-            </Form.Group>
+                <Form.Group className="mb-3" >
+                    <Form.Label>Técnica/s</Form.Label>
+                    <Row>
+                        {
+                            [
+                                'Óleo sobre lienzo',
+                                'Espátula',
+                                'Carboncillo',
+                                'Acuarela',
+                                'Témpera',
+                                'Tinta',
+                                'Pan de oro',
+                                'Serrín',
+                                'Arena',
+                                'Yeso',
+                                'Pigmento en polvo',
+                                'Barniz'
+                            ]
+                                .map((technique, index) => (
+                                    <div className="col-4" key={index}>
+                                        <Form.Check
+                                            type="checkbox"
+                                            id={`technique-${index}`}
+                                            label={technique}
+                                            checked={paintingData.techniques.includes(technique)}
+                                            onChange={() => handleTechniqueChange(technique)}
+                                        />
+                                    </div>
+                                ))
+                        }
+                    </Row>
 
-            <Form.Group className="mb-3" >
-                <Form.Label>Año de creación</Form.Label>
-                <Form.Select value={paintingData.year} onChange={handleInputChange} name='year'>
-                    <option>Elige un año</option>
-                    {generateYearOptions()}
-                </Form.Select>
-            </Form.Group>
+                </Form.Group>
 
-            <Row className='align-items-center'>
-                <Col xs={9}>
-                    <Form.Label >Precio</Form.Label>
-                    <InputGroup className="mb-3" >
-                        <Form.Control type="number" value={paintingData.price} onChange={handleInputChange} name='price' />
-                        <InputGroup.Text>€</InputGroup.Text>
-                    </InputGroup>
-                </Col>
+                <Form.Group className="mb-3" >
+                    <Form.Label>Año de creación</Form.Label>
+                    <Form.Select value={paintingData.year} onChange={handleInputChange} name='year'>
+                        <option>Elige un año</option>
+                        {generateYearOptions()}
+                    </Form.Select>
+                </Form.Group>
 
-                <Col>
-                    <Form.Group className="mt-3" >
-                        <Form.Check
-                            type="checkbox"
-                            label="Vendido"
-                            checked={paintingData.sold}
-                            onChange={(e) => setPaintingData({ ...paintingData, sold: e.target.checked })}
-                            name='sold'
-                        />
-                    </Form.Group>
-                </Col>
-            </Row>
+                <Row className='align-items-center'>
+                    <Col xs={9}>
+                        <Form.Label >Precio</Form.Label>
+                        <InputGroup className="mb-3" >
+                            <Form.Control type="number" value={paintingData.price} onChange={handleInputChange} name='price' />
+                            <InputGroup.Text>€</InputGroup.Text>
+                        </InputGroup>
+                    </Col>
 
-            <Row className='mt-4'>
-                <Button style={{ backgroundColor: '#053B50', borderColor: '#053B50' }} type="submit">
-                    Crear ficha del cuadro
-                </Button>
-            </Row>
+                    <Col>
+                        <Form.Group className="mt-3" >
+                            <Form.Check
+                                type="checkbox"
+                                label="Vendido"
+                                checked={paintingData.sold}
+                                onChange={(e) => setPaintingData({ ...paintingData, sold: e.target.checked })}
+                                name='sold'
+                            />
+                        </Form.Group>
+                    </Col>
+                </Row>
 
-        </Form >
+                <Row className='mt-4'>
+                    <Button style={{ backgroundColor: '#053B50', borderColor: '#053B50' }} type="submit">
+                        Crear ficha del cuadro
+                    </Button>
+                </Row>
+
+                {/* <ModalWindow paintingData={paintingData} /> */}
+
+            </Form >
+
+
+        </>
 
 
     )

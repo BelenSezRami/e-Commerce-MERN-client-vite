@@ -2,11 +2,10 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 
 import { useParams, Link } from 'react-router-dom'
-import paintingsService from '../../services/paintings.services'
 import { Col, Container, Row } from 'react-bootstrap'
+import paintingsService from '../../services/paintings.services'
 
 import './PaintingDetailsPage.css'
-
 
 const PaintingDetailsPage = () => {
 
@@ -19,7 +18,7 @@ const PaintingDetailsPage = () => {
             .getOnePainting(painting_id)
             .then(({ data }) => setPainting(data))
             .catch(err => console.log(err))
-    }, [])
+    }, [painting_id])
 
     return (
 
@@ -43,7 +42,7 @@ const PaintingDetailsPage = () => {
                                 {painting.techniques.map((technique, index) => (
                                     <li key={index}>{technique}</li>
                                 ))}
-                                <p>{new Date(painting.year).getFullYear()}</p>
+                                <p>{painting.year}</p>
                                 <p>{painting.price}€</p>
                                 {
                                     !painting.sold
