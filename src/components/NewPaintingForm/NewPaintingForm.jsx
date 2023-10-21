@@ -6,7 +6,7 @@ import ModalWindow from '../ModalWindow/ModalWindow'
 
 const NewPaintingForm = () => {
 
-    const [paintingData, setPaintingData] = useState({
+    const initialPaintingData = {
         title: '',
         description: '',
         // image: '',
@@ -16,7 +16,11 @@ const NewPaintingForm = () => {
         year: '',
         price: '',
         sold: false
-    })
+    }
+
+    const [paintingData, setPaintingData] = useState(initialPaintingData)
+    const [showModal, setShowModal] = useState(false)
+    const [newPaintingId, setNewPaintingId] = useState(null)
 
     const handleInputChange = e => {
         const { name, value } = e.target
@@ -52,13 +56,20 @@ const NewPaintingForm = () => {
         setPaintingData({ ...paintingData, techniques: updatedTechniques })
     }
 
-    const handleSubmit = e => {
-        e.preventDefault()
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
         paintingsService
             .savePainting(paintingData)
-            .then(() => alert('Nuevo cuadro creado'))
+            .then((response) => {
+                setNewPaintingId(response.data._id)
+                setShowModal(true)
+            })
             .catch(err => console.log(err))
+    }
+
+    const resetForm = () => {
+        setPaintingData(initialPaintingData);
     }
 
     return (
@@ -176,10 +187,10 @@ const NewPaintingForm = () => {
                     </Button>
                 </Row>
 
-                {/* <ModalWindow paintingData={paintingData} /> */}
 
             </Form >
 
+            {showModal && <ModalWindow painting_id={newPaintingId} setShowModal={setShowModal} resetForm={resetForm} />}
 
         </>
 

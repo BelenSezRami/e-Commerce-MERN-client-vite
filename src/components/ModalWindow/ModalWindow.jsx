@@ -1,10 +1,10 @@
 import React from 'react'
-import { Button, Modal } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import './ModalWindow.css'
 
-const ModalWindow = ({ painting_id }) => {
+const ModalWindow = ({ painting_id, setShowModal, resetForm }) => {
 
     return (
         <Modal show={true}>
@@ -13,7 +13,16 @@ const ModalWindow = ({ painting_id }) => {
             </Modal.Header>
             <Modal.Body style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <div>
-                    <Link to={'/crear-cuadro'} className='create-new-painting-button'>Crear otra ficha</Link>
+                    <Link
+                        to={'/crear-cuadro'}
+                        className='create-new-painting-button'
+                        onClick={() => {
+                            setShowModal(false);
+                            resetForm(); // Llama a la función para reiniciar el formulario
+                        }}
+                    >
+                        Crear otra ficha
+                    </Link>
                 </div>
                 <div>
                     <Link to={`/detalles/${painting_id}`} className='new-painting-details-button'>Detalles del nuevo cuadro</Link>
