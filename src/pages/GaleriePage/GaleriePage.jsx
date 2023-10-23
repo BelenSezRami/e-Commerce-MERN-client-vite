@@ -3,6 +3,7 @@ import { Button, Container, Row } from 'react-bootstrap'
 import paintingsService from '../../services/paintings.services'
 import PaintingsList from '../../components/PaintingsList/PaintingsList'
 import { Link } from 'react-router-dom'
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
 
 const GaleriePage = () => {
 
@@ -35,7 +36,7 @@ const GaleriePage = () => {
                 {
                     !paintings
                         ?
-                        <p>Cargando...</p>
+                        <LoadingSpinner />
                         :
                         <PaintingsList paintings={paintings} />
                 }

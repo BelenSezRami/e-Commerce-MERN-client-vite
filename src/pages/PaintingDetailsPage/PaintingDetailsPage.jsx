@@ -1,9 +1,9 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
-
+import { React, useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Col, Container, Row } from 'react-bootstrap'
+
 import paintingsService from '../../services/paintings.services'
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
 
 import './PaintingDetailsPage.css'
 
@@ -26,7 +26,7 @@ const PaintingDetailsPage = () => {
             {
                 !painting
                     ?
-                    <p>Cargando...</p>
+                    <LoadingSpinner />
                     :
                     <>
                         <Row>

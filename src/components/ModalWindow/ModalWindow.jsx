@@ -6,8 +6,6 @@ import './ModalWindow.css'
 
 const ModalWindow = ({ painting_id, showModal, setShowModal, resetForm }) => {
 
-    console.log(showModal)
-
     return (
         <Modal show={showModal} onHide={() => setShowModal(false)}>
             <Modal.Header style={{ textAlign: 'center', justifyContent: 'center' }}>                <Modal.Title>¡Nuevo cuadro creado!</Modal.Title>
