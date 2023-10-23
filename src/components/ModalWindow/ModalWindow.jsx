@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 
 import './ModalWindow.css'
 
-const ModalWindow = ({ painting_id, setShowModal, resetForm }) => {
+const ModalWindow = ({ painting_id, showModal, setShowModal, resetForm }) => {
+
+    console.log(showModal)
 
     return (
-        <Modal show={true}>
-            <Modal.Header closeButton>
-                <Modal.Title>¡Nuevo cuadro creado!</Modal.Title>
+        <Modal show={showModal} onHide={() => setShowModal(false)}>
+            <Modal.Header style={{ textAlign: 'center', justifyContent: 'center' }}>                <Modal.Title>¡Nuevo cuadro creado!</Modal.Title>
             </Modal.Header>
             <Modal.Body style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <div>
@@ -17,8 +18,8 @@ const ModalWindow = ({ painting_id, setShowModal, resetForm }) => {
                         to={'/crear-cuadro'}
                         className='create-new-painting-button'
                         onClick={() => {
-                            setShowModal(false);
-                            resetForm(); // Llama a la función para reiniciar el formulario
+                            setShowModal(false)
+                            resetForm()
                         }}
                     >
                         Crear otra ficha

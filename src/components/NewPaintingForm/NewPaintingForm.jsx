@@ -190,7 +190,7 @@ const NewPaintingForm = () => {
 
             </Form >
 
-            {showModal && <ModalWindow painting_id={newPaintingId} setShowModal={setShowModal} resetForm={resetForm} />}
+            {showModal && <ModalWindow painting_id={newPaintingId} showModal={showModal} setShowModal={setShowModal} resetForm={resetForm} />}
 
         </>
 
