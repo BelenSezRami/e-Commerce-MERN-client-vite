@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import GaleriePage from '../pages/GaleriePage/GaleriePage'
 import PaintingDetailsPage from '../pages/PaintingDetailsPage/PaintingDetailsPage'
 import NewPaintingPage from '../pages/NewPaintingPage/NewPaintingPage'
+import SignupPage from '../pages/SignupPage/SignupPage'
 
 const AppRoutes = () => {
     return (
@@ -13,7 +14,7 @@ const AppRoutes = () => {
             <Route path='/contacto' element={<h1>CONTACTO</h1>} />
             <Route path='/crear-cuadro' element={<NewPaintingPage />} />
             <Route path='/detalles/:painting_id' element={<PaintingDetailsPage />} />
-            <Route path='/registro' element={<h1>REGISTRO</h1>} />
+            <Route path='/registro' element={<SignupPage />} />
             <Route path='/iniciar-sesion' element={<h1>INICIAR SESION</h1>} />
             <Route path='/perfil' element={<h1>PERFIL</h1>} />
             <Route path='/*' element={<h1>404</h1>} />
