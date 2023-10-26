@@ -24,7 +24,15 @@ const LoginForm = () => {
 
         authService
             .login(loginData)
-            .then(({ data }) => navigate('/galeria'))
+            .then(({ data }) => {
+                localStorage.setItem('authToken', data.authToken)
+
+                authService
+                    .verify(data.authToken)
+                    .then(({ data }) => console.log(data))
+
+            })
+            .then(() => navigate('/'))
             .catch(err => next(err))
     }
 
