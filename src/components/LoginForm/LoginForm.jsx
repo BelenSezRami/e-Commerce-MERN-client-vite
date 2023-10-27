@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, Form, Row } from 'react-bootstrap'
 
 import authService from '../../services/auth.services'
+import { AuthContext } from '../../contexts/auth.context'
 
 
 const LoginForm = () => {
+
+    const { setUser } = useContext(AuthContext)
 
     const [loginData, setLoginData] = useState({
         email: '',
@@ -29,10 +32,13 @@ const LoginForm = () => {
 
                 authService
                     .verify(data.authToken)
-                    .then(({ data }) => console.log(data))
+                    .then(({ data }) => {
+                        console.log('el usuario es', data)
+                        setUser(data)
+                    })
 
+                navigate('/')
             })
-            .then(() => navigate('/'))
             .catch(err => next(err))
     }
 
