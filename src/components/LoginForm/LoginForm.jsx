@@ -8,7 +8,7 @@ import { AuthContext } from '../../contexts/auth.context'
 
 const LoginForm = () => {
 
-    const { setUser } = useContext(AuthContext)
+    const { authenticateUser, storeToken } = useContext(AuthContext)
 
     const [loginData, setLoginData] = useState({
         email: '',
@@ -28,15 +28,8 @@ const LoginForm = () => {
         authService
             .login(loginData)
             .then(({ data }) => {
-                localStorage.setItem('authToken', data.authToken)
-
-                authService
-                    .verify(data.authToken)
-                    .then(({ data }) => {
-                        console.log('el usuario es', data)
-                        setUser(data)
-                    })
-
+                storeToken(data.authToken)
+                authenticateUser()
                 navigate('/')
             })
             .catch(err => next(err))
