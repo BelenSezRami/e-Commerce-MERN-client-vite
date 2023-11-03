@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Container, Row } from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap'
 import paintingsService from '../../services/paintings.services'
 import PaintingsList from '../../components/PaintingsList/PaintingsList'
 import { Link } from 'react-router-dom'

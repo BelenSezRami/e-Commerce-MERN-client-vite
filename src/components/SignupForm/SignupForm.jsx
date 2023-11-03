@@ -11,7 +11,8 @@ const SignupForm = () => {
         email: '',
         password: '',
         avatar: '',
-        role: ''
+        role: '',
+        favoritePaintings: ''
     })
     const [loadingImage, setLoadingImage] = useState(false)
 
