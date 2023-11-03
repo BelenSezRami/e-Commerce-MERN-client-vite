@@ -3,6 +3,7 @@ import { Button, Col, Form, InputGroup, Row } from 'react-bootstrap'
 
 import paintingsService from '../../services/paintings.services'
 import ModalWindow from '../ModalWindow/ModalWindow'
+import uploadServices from '../../services/upload.services'
 
 const NewPaintingForm = () => {
 
@@ -21,6 +22,7 @@ const NewPaintingForm = () => {
     const [paintingData, setPaintingData] = useState(initialPaintingData)
     const [showModal, setShowModal] = useState(false)
     const [newPaintingId, setNewPaintingId] = useState(null)
+    const [loadingImage, setLoadingImage] = useState(false)
 
     const handleInputChange = e => {
         const { name, value } = e.target
@@ -57,6 +59,7 @@ const NewPaintingForm = () => {
     }
 
     const handleSubmit = (e) => {
+
         e.preventDefault();
 
         paintingsService
@@ -70,6 +73,25 @@ const NewPaintingForm = () => {
 
     const resetForm = () => {
         setPaintingData(initialPaintingData);
+    }
+
+    const handleFileUpload = e => {
+
+        setLoadingImage(true)
+
+        const formData = new FormData()
+        formData.append('imageData', e.target.files[0])
+
+        uploadServices
+            .uploadimage(formData)
+            .then(res => {
+                setPaintingData({ ...paintingData, image: res.data.cloudinary_url })
+                setLoadingImage(false)
+            })
+            .catch(err => {
+                console.log(err)
+                setLoadingImage(false)
+            })
     }
 
     return (
@@ -88,13 +110,9 @@ const NewPaintingForm = () => {
                     <Form.Control as="textarea" value={paintingData.description} onChange={handleInputChange} name='description' />
                 </Form.Group>
 
-                {/* <Form.Group className="mb-3" >
-                <Form.Label>Imagen</Form.Label>
-                <Form.Control type="file" value={paintingData.image} onChange={handleInputChange} name='image' />
-            </Form.Group> */}
                 <Form.Group className="mb-3" >
                     <Form.Label>Imagen</Form.Label>
-                    <Form.Control type="text" value={paintingData.image} onChange={handleInputChange} name='image' />
+                    <Form.Control type="file" onChange={handleFileUpload} name='image' />
                 </Form.Group>
 
                 <Row>
@@ -161,7 +179,7 @@ const NewPaintingForm = () => {
 
                 <Row className='align-items-center'>
                     <Col xs={9}>
-                        <Form.Label >Precio</Form.Label>
+                        <Form.Label>Precio</Form.Label>
                         <InputGroup className="mb-3" >
                             <Form.Control type="number" value={paintingData.price} onChange={handleInputChange} name='price' />
                             <InputGroup.Text>€</InputGroup.Text>
@@ -182,8 +200,8 @@ const NewPaintingForm = () => {
                 </Row>
 
                 <Row className='mt-4'>
-                    <Button style={{ backgroundColor: '#053B50', borderColor: '#053B50' }} type="submit">
-                        Crear ficha del cuadro
+                    <Button style={{ backgroundColor: '#053B50', borderColor: '#053B50' }} type="submit" disabled={loadingImage}>
+                        {loadingImage ? 'Cargando imagen...' : 'Crear ficha del cuadro'}
                     </Button>
                 </Row>
 
