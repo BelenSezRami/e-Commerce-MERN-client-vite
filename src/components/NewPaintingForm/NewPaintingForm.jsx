@@ -10,7 +10,6 @@ const NewPaintingForm = () => {
     const initialPaintingData = {
         title: '',
         description: '',
-        // image: '',
         height: '',
         width: '',
         techniques: [],
