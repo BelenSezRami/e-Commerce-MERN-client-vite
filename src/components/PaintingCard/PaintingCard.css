@@ -8,6 +8,10 @@
     width: 100%;
 }
 
-.details-button {
-    margin-right: 4px;
+.fav-button {
+    margin-left: 3px;
+}
+
+.fav-icon {
+    width: 15px;
 }

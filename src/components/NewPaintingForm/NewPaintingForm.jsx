@@ -62,7 +62,7 @@ const NewPaintingForm = () => {
         e.preventDefault();
 
         paintingsService
-            .savePainting(paintingData)
+            .createPainting(paintingData)
             .then((response) => {
                 setNewPaintingId(response.data._id)
                 setShowModal(true)
@@ -79,7 +79,7 @@ const NewPaintingForm = () => {
         setLoadingImage(true)
 
         const formData = new FormData()
-        formData.append('imageData', e.target.files[0])
+        formData.append('image', e.target.files[0])
 
         uploadServices
             .uploadimage(formData)

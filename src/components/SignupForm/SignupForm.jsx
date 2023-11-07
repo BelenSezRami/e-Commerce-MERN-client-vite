@@ -8,6 +8,7 @@ const SignupForm = () => {
 
     const [signupData, setSignupData] = useState({
         name: '',
+        lastName: '',
         email: '',
         password: '',
         avatar: '',
@@ -30,7 +31,7 @@ const SignupForm = () => {
         authService
             .signup(signupData)
             .then(({ data }) => navigate('/iniciar-sesion'))
-            .catch(err => next(err))
+            .catch(err => console.log(err))
     }
 
     const handleFileUpload = e => {
@@ -38,7 +39,7 @@ const SignupForm = () => {
         setLoadingImage(true)
 
         const formData = new FormData()
-        formData.append('imageData', e.target.files[0])
+        formData.append('image', e.target.files[0])
 
         uploadServices
             .uploadimage(formData)
@@ -52,7 +53,7 @@ const SignupForm = () => {
             })
     }
 
-    const { name, email, password, avatar } = signupData
+    const { name, lastName, email, password, avatar } = signupData
 
     return (
         <Form onSubmit={handleSubmit}>
@@ -60,6 +61,11 @@ const SignupForm = () => {
                 <Form.Group className="mb-3" controlId="name">
                     <Form.Label>Nombre</Form.Label>
                     <Form.Control type="text" value={name} onChange={handleInputChange} name="name" />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="lastName">
+                    <Form.Label>Apellido</Form.Label>
+                    <Form.Control type="text" value={lastName} onChange={handleInputChange} name="lastName" />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="email">
