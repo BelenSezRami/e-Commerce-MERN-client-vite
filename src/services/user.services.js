@@ -10,7 +10,7 @@ class UserServices {
 
         this.api.interceptors.request.use((config) => {
 
-            const storedToken = localStorage.getItem("authToken");
+            const storedToken = localStorage.getItem("authToken")
 
             if (storedToken) {
                 config.headers = { Authorization: `Bearer ${storedToken}` }
@@ -37,8 +37,16 @@ class UserServices {
         return this.api.delete(`/deleteUser/${user_id}`)
     }
 
-    addPaintingToFavorite(painting_id, user_id) {
-        return this.api.post(`/addPaintingToFavorite/${painting_id}`, user_id)
+    addPaintingToFavorites(painting_id, user_id) {
+        const url = `/addPaintingToFavorites/${user_id}/${painting_id}`
+        console.log(`URL de la solicitud: ${url}`)
+        return this.api.put(url)
+    }
+
+    removePaintingFromFavorites(painting_id, user_id) {
+        const url = `/removePaintingFromFavorites/${user_id}/${painting_id}`
+        console.log(`URL de la solicitud: ${url}`)
+        return this.api.put(url)
     }
 
 }

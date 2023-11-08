@@ -13,7 +13,7 @@ const SignupForm = () => {
         password: '',
         avatar: '',
         role: '',
-        favoritePaintings: ''
+        favoritePaintings: []
     })
     const [loadingImage, setLoadingImage] = useState(false)
 

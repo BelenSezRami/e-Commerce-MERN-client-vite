@@ -3,8 +3,8 @@ import { AuthContext } from '../contexts/auth.context'
 import { Navigate, Outlet } from 'react-router-dom'
 import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner'
 
-const PrivateRoutes = () => {
-
+const PrivateRoutes = ({ admittedRoles }) => {
+    console.log(admittedRoles)
     const { user, isLoading } = useContext(AuthContext)
 
     if (isLoading) {
@@ -13,6 +13,10 @@ const PrivateRoutes = () => {
 
     if (!user) {
         return <Navigate to='/iniciar-sesion' />
+    }
+
+    if (!user.role || !admittedRoles.includes(user.role)) {
+        return <Navigate to="/galeria" />
     }
 
     return <Outlet />

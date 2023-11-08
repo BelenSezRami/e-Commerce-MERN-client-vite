@@ -15,14 +15,18 @@ const AppRoutes = () => {
             <Route path='/' element={<h1>INICIO</h1>} />
             <Route path='/galeria' element={<GaleriePage />} />
             <Route path='/contacto' element={<h1>CONTACTO</h1>} />
-            <Route path='/crear-cuadro' element={<NewPaintingPage />} />
             <Route path='/detalles/:painting_id' element={<PaintingDetailsPage />} />
             <Route path='/registro' element={<SignupPage />} />
             <Route path='/iniciar-sesion' element={<LoginPage />} />
 
-            <Route path='/perfil' element={<PrivateRoutes />} >
+            <Route path='/perfil' element={<PrivateRoutes admittedRoles={['ADMIN', 'USER']} />} >
                 <Route path='' element={<ProfilePage />} />
             </Route>
+
+            <Route element={<PrivateRoutes admittedRoles={['ADMIN']} />}>
+                <Route path='/crear-cuadro' element={<NewPaintingPage />} />
+            </Route>
+
 
             <Route path='/*' element={<h1>404</h1>} />
         </Routes>

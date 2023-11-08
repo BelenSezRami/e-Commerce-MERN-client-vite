@@ -25,7 +25,7 @@ const ModalWindow = ({ painting_id, showModal, setShowModal, resetForm }) => {
                 </div>
                 <div>
                     <Link to={`/detalles/${painting_id}`} className='new-painting-details-button'>Detalles del nuevo cuadro</Link>
-                    <Link to={'/galeria'} className='back-to-galerie-button'>Volver a Galería</Link>
+                    <Link to={'/galeria'} className='modal-back-to-galerie-button'>Volver a Galería</Link>
                 </div>
             </Modal.Body>
 

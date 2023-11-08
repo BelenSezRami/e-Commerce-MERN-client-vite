@@ -1,18 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Card } from 'react-bootstrap'
 import { Link, useParams } from 'react-router-dom'
-import userServices from '../../services/user.services'
 import { AuthContext } from '../../contexts/auth.context'
-import './paintingCard.css'
+import userServices from '../../services/user.services'
 import fullHeartImage from '/fullheart.svg'
 import emptyHeartImage from '/emptyheart.svg'
-import paintingsService from '../../services/paintings.services'
+import './paintingCard.css'
+// import paintingsService from '../../services/paintings.services'
 
 const PaintingCard = ({ title, image, _id }) => {
 
-    const { user } = useContext(AuthContext)
+    const { user, setUser } = useContext(AuthContext)
 
-    const [isFavorite, setIsFavorite] = useState(false)
+    const [isFavorite, setIsFavorite] = useState(user?.favoritePaintings?.includes(_id))
 
     // useEffect(() => {
 
@@ -27,32 +27,33 @@ const PaintingCard = ({ title, image, _id }) => {
     const handleFavorite = () => {
 
         setIsFavorite(true)
-        console.log('Adding painting to favorites:', _id, user._id)
 
         userServices
-            .addPaintingToFavorite(_id, String(user._id))
-            .then(({ data }) => {
-                console.log(`Pintura con id ${_id} agregada a favoritos del ${user.name}`, data)
+            .addPaintingToFavorites(user._id, _id)
+            .then(updatedUser => {
+                setUser(updatedUser)
+                setIsFavorite(true)
+                console.log(`Pintura con id ${_id} agregada a favoritos del usuario ${user.name}`)
             })
-            .catch(error => {
-                console.error('Error al agregar la pintura a favoritos:', error)
+            .catch(err => {
+                console.error('Error al agregar la pintura a favoritos:', err)
             })
     }
 
     const handleRemoveFavorite = () => {
 
-        // setIsFavorite(false)
+        setIsFavorite(false)
 
-        // paintingsService
-        //     .removeFavoritePainting(_id, user)
-        //     .then(({ data }) => {
-        //         console.log(`Pintura con id ${_id} eliminada de favoritos del ${user.name}`, data)
-        //     })
-        //     .catch(error => {
-        //         console.error(error)
-        //     })
-
-        console.log('cuadro eliminado de favoritos')
+        userServices
+            .removePaintingFromFavorites(user._id, _id)
+            .then(updatedUser => {
+                setUser(updatedUser)
+                setIsFavorite(false)
+                console.log(`Pintura con id ${_id} eliminada de favoritos del usuario ${user.name}`)
+            })
+            .catch(error => {
+                console.error('Error al eliminar la pintura de favoritos:', error)
+            })
     }
 
 
