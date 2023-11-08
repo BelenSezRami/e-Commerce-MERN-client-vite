@@ -13,10 +13,10 @@ const SignupForm = () => {
         password: '',
         avatar: '',
         role: '',
-        favoritePaintings: []
     })
     const [loadingImage, setLoadingImage] = useState(false)
 
+    const { name, lastName, password, email } = signupData
 
     const navigate = useNavigate()
 
@@ -30,7 +30,7 @@ const SignupForm = () => {
 
         authService
             .signup(signupData)
-            .then(({ data }) => navigate('/iniciar-sesion'))
+            .then(() => navigate('/iniciar-sesion'))
             .catch(err => console.log(err))
     }
 
@@ -42,7 +42,7 @@ const SignupForm = () => {
         formData.append('image', e.target.files[0])
 
         uploadServices
-            .uploadimage(formData)
+            .uploadImage(formData)
             .then(res => {
                 setSignupData({ ...signupData, avatar: res.data.cloudinary_url })
                 setLoadingImage(false)
@@ -53,7 +53,6 @@ const SignupForm = () => {
             })
     }
 
-    const { name, lastName, email, password, avatar } = signupData
 
     return (
         <Form onSubmit={handleSubmit}>
@@ -80,9 +79,10 @@ const SignupForm = () => {
 
                 <Form.Group className="mb-3" controlId="avatar">
                     <Form.Label>Foto de perfil</Form.Label>
-                    <Form.Control type="file" onChange={handleFileUpload} name="avatar" />
+                    <Form.Control type="file" onChange={handleFileUpload} />
                 </Form.Group>
             </Row>
+
             <Row className='mt-4'>
                 <Button style={{ backgroundColor: '#053B50', borderColor: '#053B50' }} type="submit" disabled={loadingImage}>
                     {loadingImage ? 'Cargando imagen...' : 'Crear usuario'}

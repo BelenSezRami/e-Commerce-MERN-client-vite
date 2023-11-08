@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from 'axios'
 
 class AuthService {
 
@@ -18,6 +18,7 @@ class AuthService {
 
             return config
         })
+
     }
 
     signup(userData) {
@@ -29,10 +30,10 @@ class AuthService {
     }
 
     verify(token) {
-        return this.api.get('verify', { headers: { Authorization: `Bearer ${token}` } })
+        return this.api.get('/verify', { headers: { Authorization: `Bearer ${token}` } })
     }
 }
 
-const authService = new AuthService()
+const authServices = new AuthService()
 
-export default authService
+export default authServices

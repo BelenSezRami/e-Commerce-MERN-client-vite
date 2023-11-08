@@ -1,10 +1,9 @@
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, Form, Row } from 'react-bootstrap'
-
-import authService from '../../services/auth.services'
 import { AuthContext } from '../../contexts/auth.context'
 
+import authService from '../../services/auth.services'
 
 const LoginForm = () => {
 
@@ -16,6 +15,8 @@ const LoginForm = () => {
     })
 
     const navigate = useNavigate()
+
+    const { email, password } = loginData
 
     const handleInputChange = e => {
         const { value, name } = e.target
@@ -32,10 +33,9 @@ const LoginForm = () => {
                 authenticateUser()
                 navigate('/')
             })
-            .catch(err => next(err))
+            .catch(err => console.log(err))
     }
 
-    const { email, password } = loginData
 
     return (
         <Form onSubmit={handleSubmit}>

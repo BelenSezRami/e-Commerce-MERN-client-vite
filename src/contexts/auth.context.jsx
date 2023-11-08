@@ -34,6 +34,8 @@ function AuthProviderWrapper(props) {
             authService
                 .verify(token)
                 .then(({ data }) => {
+                    console.log(user, data)
+
                     setUser(data)
                     setIsLoading(false)
                 })
