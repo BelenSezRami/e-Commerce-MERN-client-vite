@@ -1,7 +1,3 @@
-.paintingCard img {
-    height: 100%;
-}
-
 .card-buttons {
     display: flex;
     flex-wrap: nowrap;
@@ -14,4 +10,9 @@
 
 .fav-icon {
     width: 15px;
+}
+
+.painting-image {
+    height: 300px;
+    object-fit: cover;
 }

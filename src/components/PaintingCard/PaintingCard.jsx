@@ -1,11 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Card } from 'react-bootstrap'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/auth.context'
 import userServices from '../../services/user.services'
 import fullHeartImage from '/fullheart.svg'
 import emptyHeartImage from '/emptyheart.svg'
+import capitalizeFirstLetter from '../../utils/capitalizeFirstLetter'
 import './paintingCard.css'
+
 // import paintingsService from '../../services/paintings.services'
 
 const PaintingCard = ({ title, image, _id }) => {
@@ -13,16 +15,6 @@ const PaintingCard = ({ title, image, _id }) => {
     const { user, setUser } = useContext(AuthContext)
 
     const [isFavorite, setIsFavorite] = useState(user?.favoritePaintings?.includes(_id))
-
-    // useEffect(() => {
-
-    //     userServices
-    //         .getOneUser(user?._id)
-    //         .then(({ data }) => data.favoritePaintings.some(elm => elm._id === _id) ? setIsFavorite(true) : setIsFavorite(false))
-    //         .catch(err => console.log(err))
-
-    // }, [user, user?._id])
-
 
     const handleFavorite = () => {
 
@@ -59,13 +51,18 @@ const PaintingCard = ({ title, image, _id }) => {
 
     return (
         <Card className='mb-3 paintingCard'>
-            <Card.Img variant="top" src={image} />
+
+            <Card.Img variant="top" src={image} className='painting-image' />
+
             <Card.Body className="d-flex flex-column">
-                <Card.Title>{title}</Card.Title>
+
+                <Card.Title>{capitalizeFirstLetter(title)}</Card.Title>
+
                 <div className="d-flex justify-content-between">
                     <Link to={`/detalles/${_id}`} className="btn btn-dark btn-sm flex-grow-1">
                         Detalles
                     </Link>
+
                     {user && (
 
                         isFavorite ?
@@ -82,7 +79,9 @@ const PaintingCard = ({ title, image, _id }) => {
 
                     )}
                 </div>
+
             </Card.Body>
+
         </Card>
     )
 }
