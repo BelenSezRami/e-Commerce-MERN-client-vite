@@ -15,11 +15,15 @@ const PaintingDetailsPage = () => {
 
     const [painting, setPainting] = useState()
 
-    useEffect(() => {
+    const getPainting = () => {
         paintingsService
             .getOnePainting(painting_id)
             .then(({ data }) => setPainting(data))
             .catch(err => console.log(err))
+    }
+
+    useEffect(() => {
+        getPainting()
     }, [painting_id])
 
     return (
@@ -64,7 +68,7 @@ const PaintingDetailsPage = () => {
 
                                 {
                                     user?.role === 'ADMIN' && (
-                                        <Link to={'/editar-cuadro/:id'} className='edit-painting-button'>Volver a Galería</Link>
+                                        <Link to={`/editar-cuadro/${painting_id}`} className='edit-painting-button'>Editar cuadro</Link>
                                     )
                                 }
                             </Col>

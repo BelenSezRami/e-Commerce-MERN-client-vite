@@ -33,7 +33,7 @@ class PaintingService {
     }
 
     editPainting(painting_id, paintingData) {
-        return this.api.put(`/edit/${painting_id}`, paintingData)
+        return this.api.put(`/editPainting/${painting_id}`, paintingData)
     }
 
     // addPaintingToFavorite(painting_id, user_id) {

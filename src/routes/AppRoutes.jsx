@@ -7,6 +7,8 @@ import SignupPage from '../pages/SignupPage/SignupPage'
 import LoginPage from '../pages/LoginPage/LoginPage'
 import ProfilePage from '../pages/ProfilePage/ProfilePage'
 import PrivateRoutes from './PrivateRoutes'
+import EditPaintingPage from '../pages/EditPaintingPage/EditPaintingPage'
+
 
 const AppRoutes = () => {
     return (
@@ -25,6 +27,7 @@ const AppRoutes = () => {
 
             <Route element={<PrivateRoutes admittedRoles={['ADMIN']} />}>
                 <Route path='/crear-cuadro' element={<NewPaintingPage />} />
+                <Route path='/editar-cuadro/:painting_id' element={<EditPaintingPage />} />
             </Route>
 
 

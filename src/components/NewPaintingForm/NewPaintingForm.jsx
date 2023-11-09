@@ -82,7 +82,7 @@ const NewPaintingForm = () => {
         formData.append('image', e.target.files[0])
 
         uploadServices
-            .uploadimage(formData)
+            .uploadImage(formData)
             .then(res => {
                 setPaintingData({ ...paintingData, image: res.data.cloudinary_url })
                 setLoadingImage(false)
