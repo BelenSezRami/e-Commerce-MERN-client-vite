@@ -8,8 +8,8 @@ import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
 
 const GaleriePage = () => {
 
-    const [paintings, setPaintings] = useState()
     const { user } = useContext(AuthContext)
+    const [paintings, setPaintings] = useState()
 
     const updateList = () => {
 
@@ -22,7 +22,6 @@ const GaleriePage = () => {
 
     useEffect(() => {
         updateList()
-
     }, [])
 
     return (

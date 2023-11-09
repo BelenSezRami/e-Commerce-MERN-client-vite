@@ -34,8 +34,6 @@ function AuthProviderWrapper(props) {
             authService
                 .verify(token)
                 .then(({ data }) => {
-                    console.log(user, data)
-
                     setUser(data)
                     setIsLoading(false)
                 })
@@ -46,8 +44,12 @@ function AuthProviderWrapper(props) {
         }
     }
 
+    const updateUser = (updatedUser) => {
+        setUser(updatedUser)
+    }
+
     return (
-        <AuthContext.Provider value={{ user, setUser, authenticateUser, storeToken, logout, isLoading }}>
+        <AuthContext.Provider value={{ user, updateUser, setUser, authenticateUser, storeToken, logout, isLoading }}>
             {props.children}
         </AuthContext.Provider>
     )

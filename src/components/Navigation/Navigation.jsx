@@ -1,10 +1,18 @@
-import React, { useContext } from 'react';
-import { Navbar, Container, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { AuthContext } from '../../contexts/auth.context';
+import React, { useContext } from 'react'
+import { Navbar, Container, Nav } from 'react-bootstrap'
+import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../contexts/auth.context'
 
 const Navigation = () => {
-  const { user, logout } = useContext(AuthContext);
+
+  const { user, logout } = useContext(AuthContext)
+
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    logout()
+    navigate('/')
+  }
 
   return (
     <Navbar style={{ backgroundColor: '#176B87' }} data-bs-theme="dark" expand="lg" className='mb-5'>
@@ -36,10 +44,10 @@ const Navigation = () => {
               user
                 ?
                 <>
-                  <Nav.Link as="span" onClick={logout}>Cerrar sesión</Nav.Link>
+                  <Nav.Link as="span" onClick={handleLogout}>Cerrar sesión</Nav.Link>
 
                   <Nav.Link as="span">
-                    <Link to="/perfil">¡Hola, {user.name}!</Link>
+                    <Link to={`/perfil/${user._id}`}>¡Hola, {user.name}!</Link>
                   </Nav.Link>
 
                 </>
@@ -57,7 +65,7 @@ const Navigation = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-  );
+  )
 }
 
-export default Navigation;
+export default Navigation

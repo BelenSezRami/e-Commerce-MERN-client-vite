@@ -8,6 +8,7 @@ import LoginPage from '../pages/LoginPage/LoginPage'
 import ProfilePage from '../pages/ProfilePage/ProfilePage'
 import PrivateRoutes from './PrivateRoutes'
 import EditPaintingPage from '../pages/EditPaintingPage/EditPaintingPage'
+import EditProfilePage from '../pages/EditProfilePage/EditProfilePage'
 
 
 const AppRoutes = () => {
@@ -21,8 +22,11 @@ const AppRoutes = () => {
             <Route path='/registro' element={<SignupPage />} />
             <Route path='/iniciar-sesion' element={<LoginPage />} />
 
-            <Route path='/perfil' element={<PrivateRoutes admittedRoles={['ADMIN', 'USER']} />} >
+            <Route path='/perfil/:user_id' element={<PrivateRoutes admittedRoles={['ADMIN', 'USER']} />} >
                 <Route path='' element={<ProfilePage />} />
+            </Route>
+            <Route path='/editar-perfil/:user_id' element={<PrivateRoutes admittedRoles={['ADMIN', 'USER']} />} >
+                <Route path='' element={<EditProfilePage />} />
             </Route>
 
             <Route element={<PrivateRoutes admittedRoles={['ADMIN']} />}>

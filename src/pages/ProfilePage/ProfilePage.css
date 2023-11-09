@@ -1,0 +1,9 @@
+.edit-profile-button {
+    text-align: center;
+    margin-bottom: 50px;
+    background-color: #053B50;
+    color: white;
+    font-size: 1em;
+    padding: 10px;
+    border-radius: 7px;
+}

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { Button, Col, Form, InputGroup, Row } from 'react-bootstrap'
 import paintingsService from '../../services/paintings.services'
 import uploadServices from '../../services/upload.services'
+
 const EditPaintingForm = () => {
 
     const navigate = useNavigate()
@@ -22,7 +23,6 @@ const EditPaintingForm = () => {
 
     const [loadingImage, setLoadingImage] = useState(false)
 
-
     const getPainting = () => {
         paintingsService
             .getOnePainting(painting_id)
@@ -35,9 +35,7 @@ const EditPaintingForm = () => {
     }, [painting_id])
 
     const handleSubmit = e => {
-
         e.preventDefault()
-
         paintingsService
             .editPainting(painting_id, paintingData)
             .then(() => navigate(`/detalles/${painting_id}`))
@@ -102,12 +100,12 @@ const EditPaintingForm = () => {
 
             <Form.Group className="mb-3" >
                 <Form.Label>Título de la obra</Form.Label>
-                <Form.Control type="text" value={paintingData.title} onChange={handleInputChange} name='title' />
+                <Form.Control type="text" value={paintingData.title} onChange={handleInputChange} name='title' className="inputHover" />
             </Form.Group>
 
             <Form.Group className="mb-3" >
                 <Form.Label>Descripción</Form.Label>
-                <Form.Control as="textarea" value={paintingData.description} onChange={handleInputChange} name='description' />
+                <Form.Control as="textarea" value={paintingData.description} onChange={handleInputChange} name='description' className="inputHover" />
             </Form.Group>
 
             <Form.Group className="mb-3" >
@@ -120,7 +118,7 @@ const EditPaintingForm = () => {
                 <Col>
                     <InputGroup className="mb-3" >
                         <InputGroup.Text>Altura</InputGroup.Text>
-                        <Form.Control type="number" value={paintingData.height} onChange={handleInputChange} name='height' />
+                        <Form.Control type="number" value={paintingData.height} onChange={handleInputChange} name='height' className="inputHover" />
                         <InputGroup.Text>cm</InputGroup.Text>
                     </InputGroup>
 
@@ -129,7 +127,7 @@ const EditPaintingForm = () => {
                 <Col>
                     <InputGroup className="mb-3" >
                         <InputGroup.Text>Ancho</InputGroup.Text>
-                        <Form.Control type="number" value={paintingData.width} onChange={handleInputChange} name='width' />
+                        <Form.Control type="number" value={paintingData.width} onChange={handleInputChange} name='width' className="inputHover" />
                         <InputGroup.Text>cm</InputGroup.Text>
                     </InputGroup>
                 </Col>

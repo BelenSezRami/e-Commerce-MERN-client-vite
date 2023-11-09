@@ -53,7 +53,6 @@ const SignupForm = () => {
             })
     }
 
-
     return (
         <Form onSubmit={handleSubmit}>
             <Row className='mt-4'>

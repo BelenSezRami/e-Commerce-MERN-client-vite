@@ -30,7 +30,7 @@ class UserServices {
     }
 
     editUser(user_id, userData) {
-        return this.api.put(`/editUser/${user_id}/edit`, userData)
+        return this.api.put(`/editUser/${user_id}`, userData)
     }
 
     deleteUser(user_id) {

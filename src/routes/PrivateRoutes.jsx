@@ -4,7 +4,6 @@ import { Navigate, Outlet } from 'react-router-dom'
 import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner'
 
 const PrivateRoutes = ({ admittedRoles }) => {
-    console.log(admittedRoles)
     const { user, isLoading } = useContext(AuthContext)
 
     if (isLoading) {
