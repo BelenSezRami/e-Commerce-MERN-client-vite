@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { AuthContext } from '../../contexts/auth.context'
 import { Link } from 'react-router-dom'
-import './ProfilePage.css'
 import userServices from '../../services/user.services'
+import './ProfilePage.css'
 
 const ProfilePage = () => {
 
@@ -25,22 +25,30 @@ const ProfilePage = () => {
 
     return (
         <Container>
-            <Row>
-                <Col><h1>{profileUser.name}</h1></Col>
+            <Row className='justify-content-center align-items-center'>
+                <Col className='d-flex justify-content-center'>
+                    <img src={profileUser.avatar} alt="profile-picture" className='profile-picture' />
+                </Col>
+                <Col className='text-md-left text-center mt-3 mt-md-0'>
+                    <div className='profile-info'>
+                        <h2 className='name'>{profileUser.name} {profileUser.lastName}</h2>
+                        <h3 className='info'>{profileUser.email}</h3>
+                        <br />
+                        <Link to={`/editar-perfil/${profileUser._id}`} className='edit-profile-button'>Editar perfil</Link>
+                    </div>
+                </Col>
             </Row>
-
-            <Row>
-
-                Información de {profileUser.name} {profileUser.lastName}
-                <p>{profileUser.email}</p>
-                <p>{profileUser.role}</p>
-                <img src={profileUser.avatar} alt="" />
+            <hr />
+            <Row className='text-center'>
+                <Col>
+                    <h4>Tus cuadros favoritos</h4>
+                    {profileUser.favoritePaintings && profileUser.favoritePaintings.length > 0 ? (
+                        <PaintingList paintings={profileUser.favoritePaintings} />
+                    ) : (
+                        <p>No tienes cuadros favoritos.</p>
+                    )}
+                </Col>
             </Row>
-
-            <Row className='mt-4'>
-                <Link to={`/editar-perfil/${profileUser._id}`} className='edit-profile-button'>Editar perfil</Link>
-            </Row>
-
         </Container>
     )
 }
