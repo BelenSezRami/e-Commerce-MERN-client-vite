@@ -45,7 +45,9 @@ function AuthProviderWrapper(props) {
     }
 
     const updateUser = (updatedUser) => {
+        console.log('Usuario actualizado:', updatedUser)
         setUser(updatedUser)
+        localStorage.setItem('authToken', updatedUser.token)
     }
 
     return (

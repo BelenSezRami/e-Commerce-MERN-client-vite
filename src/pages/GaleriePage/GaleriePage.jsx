@@ -46,7 +46,7 @@ const GaleriePage = () => {
                         ?
                         <LoadingSpinner />
                         :
-                        <PaintingsList paintings={paintings} />
+                        <PaintingsList paintings={paintings} favorites={user?.favoritePaintings || []} />
                 }
 
             </Row>
