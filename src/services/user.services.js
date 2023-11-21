@@ -37,16 +37,12 @@ class UserServices {
         return this.api.delete(`/deleteUser/${user_id}`)
     }
 
-    addPaintingToFavorites(painting_id, user_id) {
-        const url = `/addPaintingToFavorites/${user_id}/${painting_id}`
-        console.log(`URL de la solicitud: ${url}`)
-        return this.api.put(url)
+    addPaintingToFavorites(user_id, painting_id) {
+        return this.api.put(`/addPaintingToFavorites/${user_id}/${painting_id}`)
     }
 
-    removePaintingFromFavorites(painting_id, user_id) {
-        const url = `/removePaintingFromFavorites/${user_id}/${painting_id}`
-        console.log(`URL de la solicitud: ${url}`)
-        return this.api.put(url)
+    removePaintingFromFavorites(user_id, painting_id) {
+        return this.api.put(`/removePaintingFromFavorites/${user_id}/${painting_id}`)
     }
 
 }

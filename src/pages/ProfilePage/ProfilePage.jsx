@@ -3,6 +3,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import { AuthContext } from '../../contexts/auth.context'
 import { Link } from 'react-router-dom'
 import userServices from '../../services/user.services'
+import PaintingsList from '../../components/PaintingsList/PaintingsList'
 import './ProfilePage.css'
 
 const ProfilePage = () => {
@@ -43,7 +44,7 @@ const ProfilePage = () => {
                 <Col>
                     <h4>Tus cuadros favoritos</h4>
                     {profileUser.favoritePaintings && profileUser.favoritePaintings.length > 0 ? (
-                        <PaintingList paintings={profileUser.favoritePaintings} />
+                        <PaintingsList paintings={profileUser.favoritePaintings} />
                     ) : (
                         <p>No tienes cuadros favoritos.</p>
                     )}

@@ -23,9 +23,9 @@ const PaintingCard = ({ title, image, _id }) => {
         userServices
             .addPaintingToFavorites(user._id, _id)
             .then(updatedUser => {
-                setUser(updatedUser)
+                setUser(updatedUser.data)
                 setIsFavorite(true)
-                console.log(`Pintura con id ${_id} agregada a favoritos del usuario ${user.name}`)
+                console.log(`Pintura con id ${_id} agregada a favoritos del usuario ${user.name}`, updatedUser.data)
             })
             .catch(err => {
                 console.error('Error al agregar la pintura a favoritos:', err)
@@ -39,7 +39,7 @@ const PaintingCard = ({ title, image, _id }) => {
         userServices
             .removePaintingFromFavorites(user._id, _id)
             .then(updatedUser => {
-                setUser(updatedUser)
+                setUser(updatedUser.data)
                 setIsFavorite(false)
                 console.log(`Pintura con id ${_id} eliminada de favoritos del usuario ${user.name}`)
             })
@@ -56,7 +56,7 @@ const PaintingCard = ({ title, image, _id }) => {
 
             <Card.Body className="d-flex flex-column">
 
-                <Card.Title>{capitalizeFirstLetter(title)}</Card.Title>
+                <Card.Title>{title}</Card.Title>
 
                 <div className="d-flex justify-content-between">
                     <Link to={`/detalles/${_id}`} className="btn btn-dark btn-sm flex-grow-1">
