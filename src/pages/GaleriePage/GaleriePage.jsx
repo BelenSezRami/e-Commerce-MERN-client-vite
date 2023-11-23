@@ -22,7 +22,9 @@ const GaleriePage = () => {
 
     useEffect(() => {
         updateList()
+        console.log('Lista de favoritos del usuario:', user?.favoritePaintings || []);
     }, [])
+
 
     return (
         <Container>
@@ -46,7 +48,7 @@ const GaleriePage = () => {
                         ?
                         <LoadingSpinner />
                         :
-                        <PaintingsList paintings={paintings} favorites={user?.favoritePaintings || []} />
+                        <PaintingsList paintings={paintings} />
                 }
 
             </Row>
