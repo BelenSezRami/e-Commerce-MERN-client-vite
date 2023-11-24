@@ -5,7 +5,9 @@ const AuthContext = createContext()
 
 function AuthProviderWrapper(props) {
 
-    const [user, setUser] = useState()
+    const [user, setUser] = useState({
+        favoritePaintings: []
+    })
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
@@ -34,7 +36,10 @@ function AuthProviderWrapper(props) {
             authService
                 .verify(token)
                 .then(({ data }) => {
-                    setUser(data)
+                    setUser({
+                        ...data,
+                        favoritePaintings: data.favoritePaintings || []
+                    })
                     setIsLoading(false)
                 })
                 .catch(err => logout())
@@ -45,9 +50,9 @@ function AuthProviderWrapper(props) {
     }
 
     const updateUser = (updatedUser) => {
-        console.log('Usuario actualizado:', updatedUser)
-        setUser(updatedUser)
-        localStorage.setItem('authToken', updatedUser.token)
+        console.log('Usuario actualizado:', updatedUser);
+        setUser(updatedUser);
+        localStorage.setItem('authToken', updatedUser.token);
     }
 
     return (

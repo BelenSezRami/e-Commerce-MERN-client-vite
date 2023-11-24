@@ -36,14 +36,6 @@ class PaintingService {
         return this.api.put(`/editPainting/${painting_id}`, paintingData)
     }
 
-    // addPaintingToFavorite(painting_id, user_id) {
-    //     return this.api.put(`/addPaintingToFavorite/${painting_id}`, user_id)
-    // }
-
-    // removeFavoritePainting(painting_id, user_id) {
-    //     return this.api.put(`/removePaintingFromFavorite/${painting_id}`, user_id)
-    // }
-
     deletePainting(painting_id) {
         return this.api.delete(`/deletePainting/${painting_id}`)
     }
