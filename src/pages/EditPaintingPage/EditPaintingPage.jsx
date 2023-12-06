@@ -3,6 +3,8 @@ import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
 import { useParams } from 'react-router-dom'
 import paintingsService from '../../services/paintings.services'
 import EditPaintingForm from '../../components/EditPaintingForm/EditPaintingForm.jsx'
+import { Container } from 'react-bootstrap'
+import './EditPaintingPage.css'
 
 const EditPaintingPage = () => {
 
@@ -23,7 +25,7 @@ const EditPaintingPage = () => {
     }, [painting_id])
 
     return (
-        <>
+        <Container>
 
             {
                 !painting
@@ -31,12 +33,12 @@ const EditPaintingPage = () => {
                     <LoadingSpinner />
                     :
                     <>
-                        <h1>EDITAR {painting.title.toUpperCase()}</h1>
+                        <h1 className='edit-title'>EDITAR {painting.title.toUpperCase()}</h1>
 
                         <EditPaintingForm />
                     </>
             }
-        </>
+        </Container>
     )
 }
 
